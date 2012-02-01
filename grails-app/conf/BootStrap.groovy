@@ -10,7 +10,7 @@ class BootStrap {
 			case "development":
 				
 				if( !PropertyNumber.findByKey( 'headline.key.next' ) ) {
-					PropertyNumber prop = new PropertyNumber( key: 'headline.key.next', value: 1L )
+					PropertyNumber prop = new PropertyNumber( key: 'headline.key.next', value: 20241L )
 					
 					if( !prop.save() ) {
 						log.error "SAVING OF PROPERTYNUMBER FAILED:\n ${prop.errors}"
@@ -53,6 +53,7 @@ class BootStrap {
 				// create a headline (in user-role)
 				Headline headline = new Headline()
 				headline.subject = 'Urlaub endet für tausende in Regen und Stau'
+				headline.subHeadline = 'Urlaub endet für tausende in Regen und Stau'
 				headline.body = 'Urlaub endet für tausende in Regen, Stau und noch mehr'
 				headline.federalLand = FederalLand.SN
 				headline.location = 'Leipzig'
@@ -85,9 +86,9 @@ class BootStrap {
 				}
 				
 				// create some contacts
-				def contact1 = new Contact( name: 'Kontakt 1', email: 'me@home.com', fax: '1234567890' )
+				def contact1 = new Contact( name: 'Kontakt 1', email: 'me@home.com' )
 				contact1.save()
-				def contact2 = new Contact( name: 'Kontakt 2', email: 'karstenr@gmx.net', fax: '0987654321' )
+				def contact2 = new Contact( name: 'Kontakt 2', email: 'karstenr@gmx.net' )
 				contact2.save()
 				
 				// create a mailing list

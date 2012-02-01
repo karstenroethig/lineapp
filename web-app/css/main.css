@@ -312,3 +312,7 @@ a#header-profile-link:hover {
 	font-weight: normal;
 	text-decoration: underline;
 }
+#search {
+	float: right;
+	margin: 2em 1em;
+}

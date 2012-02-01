@@ -10,7 +10,7 @@ class Scene {
 	]
 	
 	static constraints = {
-		body( blank: false, nullable: false, size: 3..1000 )
+		body( blank: false, nullable: false, size: 3..300000 )
 		sequence()
 		headline()
 	}

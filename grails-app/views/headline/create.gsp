@@ -33,7 +33,16 @@
                                     <label for="subject"><g:message code="headline.subject.label" default="Subject" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: headlineInstance, field: 'subject', 'errors')}">
-                                    <g:textField name="subject" value="${headlineInstance?.subject}" />
+                                    <g:textArea name="subject" cols="40" rows="5" value="${headlineInstance?.subject}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="subHeadline"><g:message code="headline.subHeadline.label" default="Sub-Headline" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: headlineInstance, field: 'subHeadline', 'errors')}">
+                                    <g:textArea name="subHeadline" cols="40" rows="5" value="${headlineInstance?.subHeadline}" />
                                 </td>
                             </tr>
                         

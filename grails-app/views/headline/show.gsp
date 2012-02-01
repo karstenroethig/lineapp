@@ -30,6 +30,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="headline.subHeadline.label" default="Sub-Headline" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: headlineInstance, field: "subHeadline")}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="headline.federalLand.label" default="Federal Land" /></td>
                             
                             <td valign="top" class="value">${headlineInstance?.federalLand?.encodeAsHTML()}</td>
@@ -56,7 +63,9 @@
                             <td valign="top" style="text-align: left;" class="value">
                                 <ul>
                                 <g:each in="${headlineInstance?.scenes?.sort{it.id}}" var="s">
-                                    <li><g:link controller="scene" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+                                    <li style="padding-bottom: 1em;">
+                                    	${s?.encodeAsHTML()} (<g:link controller="scene" action="show" id="${s.id}"><g:message code="default.edit.label.single" default="edit" /></g:link>)
+                                    </li>
                                 </g:each>
                                 </ul>
 								<g:link controller="scene" action="create" params="['headline.id': headlineInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'scene.label', default: 'Scene')])}</g:link>

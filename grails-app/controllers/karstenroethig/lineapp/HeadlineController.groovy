@@ -26,7 +26,6 @@ class HeadlineController {
 		
 		synchronized( this ) {
 			PropertyNumber prop = PropertyNumber.findByKey( 'headline.key.next' )
-			println "${prop.value}"
 			headlineInstance.key = prop.value
 			prop.value = prop.value + 1
 			prop.save()
@@ -34,7 +33,7 @@ class HeadlineController {
 		headlineInstance.author = session.user
 		
         if (headlineInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.id])}"
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
             redirect(action: "show", id: headlineInstance.id)
         }
         else {
@@ -113,6 +112,28 @@ class HeadlineController {
         }
     }
 	
+	def search = {
+		if( !params.key?.trim()) {
+			redirect(action: "list")
+		} else {
+			try{
+				def searchKey = new Long( params.key.trim() )
+				Headline headlineInstance = Headline.findByKey( searchKey )
+				
+				if( headlineInstance ) {
+					render( view: "show", model: [headlineInstance: headlineInstance] )
+                    return
+				} else {
+					flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.key])}"
+					redirect(action: "list")
+				}
+			}catch( Exception ex ) {
+				flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.key])}"
+				redirect(action: "list")
+			}
+		}
+	}
+	
 	def publish = {
 		def headlineInstance = Headline.get(params.id)
         if (!headlineInstance) {
@@ -124,7 +145,7 @@ class HeadlineController {
         }
 	}
 	
-	def preview = {
+	def testMail = {
 		def headlineInstance = Headline.get(params.id)
         if (!headlineInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.id])}"
@@ -170,6 +191,26 @@ class HeadlineController {
 	}
 	
 	def send = {
-	
+		def headlineInstance = Headline.get(params.id)
+        if (!headlineInstance) {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.id])}"
+            redirect(action: "list")
+        }
+        else {
+			// TODO E-Mails senden
+			// bei Fehler auf Seite bleiben und Meldung anzeigen
+			// bei keinem Fehler: Status setzen, auf show und Erfolgsmeldunganzeigen
+			
+			headlineInstance.status = HeadlineStatus.PUBLISHED
+			headlineInstance.updateAuthor = session.user
+			
+			if (!headlineInstance.hasErrors() && headlineInstance.save(flush: true)) {
+				flash.message = "${message(code: 'headline.publish.success', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
+				redirect(action: "show", id: headlineInstance.id)
+			}
+			else {
+				render(view: "publish", model: [headlineInstance: headlineInstance])
+			}
+        }
 	}
 }

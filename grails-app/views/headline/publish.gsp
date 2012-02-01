@@ -32,16 +32,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="send"><g:message code="headline.publish.send.label" default="Send" /></label>
-                                </td>
-                                <td valign="top" class="value">
-									<g:checkBox name="sendEmail" value="${false}" /> <g:message code="headline.publish.send.email.label" default="E-Mail" /><br/>
-									<g:checkBox name="sendFax" value="${false}" /> <g:message code="headline.publish.send.fax.label" default="Fax" /><br/>
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                   <label for="mailingLists"><g:message code="headline.publish.mailingList.label" default="Mailing Lists" /></label>
                                 </td>
                                 <td valign="top" class="value">
@@ -52,72 +42,12 @@
                                 </td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="faxFormat"><g:message code="headline.publish.faxFormat.label" default="Fax Format" /></label>
-                                </td>
-                                <td valign="top" class="value">
-								
-									<table>
-										<tbody>
-										
-											<tr class="prop">
-												<td valign="top" class="name">
-												  <label for="faxFormatSubject"><g:message code="headline.subject.label" default="Subject" /></label>
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatSubject" value="1" checked="true"/> <g:message code="headline.publish.faxFormat.standard.label" default="Standard" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatSubject" value="2"/> <g:message code="headline.publish.faxFormat.small.label" default="Small" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatSubject" value="3"/> <g:message code="headline.publish.faxFormat.big.label" default="Big" />
-												</td>
-											</tr>
-										
-											<tr class="prop">
-												<td valign="top" class="name">
-												  <label for="faxFormatBody"><g:message code="headline.body.label" default="Body" /></label>
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatBody" value="1" checked="true"/> <g:message code="headline.publish.faxFormat.standard.label" default="Standard" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatBody" value="2"/> <g:message code="headline.publish.faxFormat.small.label" default="Small" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatBody" value="3"/> <g:message code="headline.publish.faxFormat.big.label" default="Big" />
-												</td>
-											</tr>
-										
-											<tr class="prop">
-												<td valign="top" class="name">
-												  <label for="faxFormatScenes"><g:message code="headline.scenes.label" default="Scenes" /></label>
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatScenes" value="1" checked="true"/> <g:message code="headline.publish.faxFormat.standard.label" default="Standard" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatScenes" value="2"/> <g:message code="headline.publish.faxFormat.small.label" default="Small" />
-												</td>
-												<td valign="top" class="value" nowrap="nowrap">
-													<g:radio name="faxFormatScenes" value="3"/> <g:message code="headline.publish.faxFormat.big.label" default="Big" />
-												</td>
-											</tr>
-											
-										</tbody>
-									</table>
-									
-                                </td>
-                            </tr>
-                        
                         </tbody>
                     </table>
                 </div>
                 <div class="buttons">
                     <span class="button"><g:actionSubmit class="save" action="send" value="${message(code: 'headline.publish.button', default: 'Publish')}" /></span>
-					<span class="button"><g:actionSubmit class="save" action="preview" value="${message(code: 'headline.publish.preview.button', default: 'Preview')}" /></span>
+					<span class="button"><g:actionSubmit class="save" action="testMail" value="${message(code: 'headline.publish.testMail.button', default: 'Send Test-Mail')}" /></span>
                 </div>
             </g:form>
         </div>

@@ -1,3 +1,5 @@
+<g:render template="/layouts/headlineSearch"/>
+
 <div id="header">
 	<p>
 		<a class="header-main"

@@ -21,16 +21,18 @@
                 <table>
                     <thead>
                         <tr>
+							
+							<g:sortableColumn property="key" title="${message(code: 'headline.key.label', default: 'Key')}" />
                         
                             <g:sortableColumn property="subject" title="${message(code: 'headline.subject.label', default: 'Subject')}" />
+                        
+                            <g:sortableColumn property="subHeadline" title="${message(code: 'headline.subHeadline.label', default: 'Sub-Headline')}" />
                         
                             <g:sortableColumn property="federalLand" title="${message(code: 'headline.federalLand.label', default: 'Federal Land')}" />
                         
                             <g:sortableColumn property="location" title="${message(code: 'headline.location.label', default: 'Location')}" />
 							
 							<g:sortableColumn property="status" title="${message(code: 'headline.status.label', default: 'Status')}" />
-							
-							<g:sortableColumn property="key" title="${message(code: 'headline.key.label', default: 'Key')}" />
 							
 							<g:sortableColumn property="dateCreated" title="${message(code: 'headline.dateCreated.label', default: 'Date Created')}" />
 							
@@ -45,16 +47,18 @@
                     <tbody>
                     <g:each in="${headlineInstanceList}" status="i" var="headlineInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+							
+							<td><g:link action="show" id="${headlineInstance.id}">${fieldValue(bean: headlineInstance, field: "key")}</g:link></td>
                         
-                            <td><g:link action="show" id="${headlineInstance.id}">${fieldValue(bean: headlineInstance, field: "subject")}</g:link></td>
+                            <td>${fieldValue(bean: headlineInstance, field: "subject")}</td>
+                        
+                            <td>${fieldValue(bean: headlineInstance, field: "subHeadline")}</td>
                         
                             <td>${fieldValue(bean: headlineInstance, field: "federalLand")}</td>
                         
                             <td>${fieldValue(bean: headlineInstance, field: "location")}</td>
 							
 							<td>${fieldValue(bean: headlineInstance, field: "status")}</td>
-							
-							<td>${fieldValue(bean: headlineInstance, field: "key")}</td>
 							
 							<td><g:formatDate format="dd.MM.yyyy HH:mm" date="${headlineInstance?.dateCreated}" /></td>
 							

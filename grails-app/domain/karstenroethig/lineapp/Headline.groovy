@@ -3,6 +3,7 @@ package karstenroethig.lineapp
 class Headline {
 
 	String subject
+	String subHeadline
 	String body
 	FederalLand federalLand
 	String location
@@ -21,12 +22,13 @@ class Headline {
 	]
 	
 	static constraints = {
-		subject( blank: false, nullable: false, size: 3..255 )
-		body( blank: false, nullable: false, size: 3..30000 )
+		subject( blank: false, nullable: false, size: 3..10000 )
+		subHeadline( maxSize: 10000 )
+		body( blank: false, nullable: false, size: 3..300000 )
 		federalLand()
 		location( blank: false, nullable: false, size: 3..255 )
 		recordingDate( blank: false, nullable: false )
-		comment( maxSize: 1000 )
+		comment( maxSize: 10000 )
 		status( nullable: false )
 		key( blank: false, nullable: false, unique: true, min: 1L )
 		author( nullable: false )
