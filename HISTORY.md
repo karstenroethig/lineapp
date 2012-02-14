@@ -7,9 +7,8 @@
 * Added searching for property `key` of `headline` domain
 * Renamed label for `scene` domain (de: "Szenen" --> "Bilder und Töne")
 * Renamed label for property `subject` of `headline` domain (de: "Schlagzeile" -> "Headline")
-* Removed property `fax` from `contact` domain
-
 * Renamed label for property `key` of `headline` domain (de: "Dok-ID" -> "Angebot")
+* Removed property `fax` from `contact` domain
 
 ## 0.1.0 (20.01.2012)
 
