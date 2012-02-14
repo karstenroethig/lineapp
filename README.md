@@ -1,13 +1,14 @@
 (Head)LineApp
 =============
 
-A Grails application to manage and distribute headlines.
+A Grails application to manage and distribute informations about filmed headlines.
 
 
 Requirements
 ------------
 * Java SDK 1.5+ (for Grails 1.2 or greater)
 * Grails 1.3.7 (http://grails.org)
+* Maven 2.x or 3.x (http://http://maven.apache.org)
 
 
 Run
@@ -23,10 +24,14 @@ Run
 
     `set JAVA_HOME=C:\Programme\Java\jdk1.6.0_16`
 
-3. Run `grails run-app` in the `lineapp` directory
+3. Copy third-party libraries with Maven
 
-4. Browse to [http://localhost:8080/lineapp](http://localhost:8080/lineapp)
+    `mvn dependency:copy-dependencies -DoutputDirectory=lib` or use `copyLibs.bat`
 
-5. Login as administrator (admin:geheim) or user (jdoe:passwort)
+4. Run `grails run-app` in the `lineapp` directory
 
-6. Celebrate
+5. Browse to [http://localhost:8080/lineapp](http://localhost:8080/lineapp)
+
+6. Login as administrator (admin:geheim) or user (jdoe:passwort)
+
+7. Celebrate
