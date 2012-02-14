@@ -5,6 +5,8 @@ import org.apache.commons.io.FileUtils
 class HeadlineController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	
+	def mailService = new MailService()
 
     def index = {
         redirect(action: "list", params: params)
@@ -152,42 +154,18 @@ class HeadlineController {
             redirect(action: "list")
         }
         else {
-			def jasperParams = [:]
 			
-			jasperParams.subject = headlineInstance.subject
-			jasperParams.body = headlineInstance.body
+			String errorResult = mailService.sendMail( headlineInstance, null, true )
 			
-			boolean first = true
-			jasperParams.scenes = ""
-			
-			for( scene in headlineInstance.scenes ) {
-				
-				if( !first ) {
-					jasperParams.scenes += "\n"
-				} else {
-					first = false
-				}
-				
-				jasperParams.scenes += "- "
-				jasperParams.scenes += scene.body
+			if( errorResult ) {
+				flash.message = "${message(code: 'headline.publish.testMail.error', args: [errorResult])}"
+			}
+			else {
+				flash.message = "${message(code: 'headline.publish.testMail.success')}"
 			}
 			
-			jasperParams.dateLocation = headlineInstance.federalLand.fullname + " / " + headlineInstance.location + " - " + headlineInstance.recordingDate.format( 'dd.MM.yyyy' ) 
-			jasperParams.contact = "Name, Vorname\nAdresszeile 1\nAddresszeile 2\nTeläfon"
-			
-			jasperParams.formatSubject = 1
-			
-			println jasperParams
+			render(view: "publish", model: [headlineInstance: headlineInstance])
         }
-		
-		def filename = "HTC.pdf"
-		def file = new File( "C:/develop/Grails" + File.separatorChar + filename )
-		
-		byte[] content = FileUtils.readFileToByteArray( file )
-		
-		response.setHeader( "Content-disposition", "attachment; filename=" + filename )
-		// response.contentType = "application/octet-stream"
-		response.outputStream << content
 	}
 	
 	def send = {
@@ -197,20 +175,31 @@ class HeadlineController {
             redirect(action: "list")
         }
         else {
-			// TODO E-Mails senden
-			// bei Fehler auf Seite bleiben und Meldung anzeigen
-			// bei keinem Fehler: Status setzen, auf show und Erfolgsmeldunganzeigen
 			
-			headlineInstance.status = HeadlineStatus.PUBLISHED
-			headlineInstance.updateAuthor = session.user
+			String errorResult
 			
-			if (!headlineInstance.hasErrors() && headlineInstance.save(flush: true)) {
-				flash.message = "${message(code: 'headline.publish.success', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
-				redirect(action: "show", id: headlineInstance.id)
+			if( params.mailingLists ) {
+				MailingList[] mailingLists = MailingList.findAll( "from MailingList as ml where ml.name in (:names)", [names: params.mailingLists ] )
+				
+				println mailingLists
+				
+				errorResult = mailService.sendMail( headlineInstance, mailingLists, false )
+			}
+			
+			if( errorResult ) {
+				flash.message = "${message(code: 'headline.publish.error', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key, errorResult])}"
 			}
 			else {
-				render(view: "publish", model: [headlineInstance: headlineInstance])
+				headlineInstance.status = HeadlineStatus.PUBLISHED
+				headlineInstance.updateAuthor = session.user
+				
+				if (!headlineInstance.hasErrors() && headlineInstance.save(flush: true)) {
+					flash.message = "${message(code: 'headline.publish.success', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
+					redirect(action: "show", id: headlineInstance.id)
+				}
 			}
+			
+			render(view: "publish", model: [headlineInstance: headlineInstance])
         }
 	}
 }

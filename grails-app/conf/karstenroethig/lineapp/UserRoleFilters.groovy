@@ -27,7 +27,7 @@ class UserRoleFilters {
 			}
 		}
 	
-		filterMailingList( controller: "(mailingList|contact)", action: '*' ) {
+		filterMailingList( controller: "(mailingList|contact|mailProperty)", action: '*' ) {
 			before = {
 				if( !session.user ) {
 					redirect( controller: 'user', action: 'login' )
