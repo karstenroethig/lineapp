@@ -1,6 +1,7 @@
 ## 1.0.0 (dd.MM.YYYY)
 
 * Sending e-mail notification when headlines are distributed
+* Improved menu structure
 * Added property `subHeadline` to `headline` domain
 * Increased max length for properties `subject`, `body` and `comment` of `headline` domain
 * Increased max length for property `body` of `scene` domain

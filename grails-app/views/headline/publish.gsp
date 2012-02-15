@@ -10,8 +10,11 @@
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-			<span class="menuButton"><g:link class="list" controller="headline" action="show" id="${headlineInstance?.id}"><g:message code="scene.headline.label" default="Headline" /></g:link></span>
+			<span class="menuButton"><g:link class="list" action="list"><g:message code="headline.list.label" /></g:link></span>
+            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+			<g:if test="${session?.user?.admin}">
+				<span class="menuButton"><g:link class="edit" controller="user" action="list"><g:message code="admin.label" /></g:link></span>
+			</g:if>
         </div>
         <div class="body">
             <h1><g:message code="headline.publish.label" args="[entityName]" /></h1>
@@ -48,6 +51,7 @@
                 <div class="buttons">
                     <span class="button"><g:actionSubmit class="save" action="send" value="${message(code: 'headline.publish.button', default: 'Publish')}" /></span>
 					<span class="button"><g:actionSubmit class="save" action="testMail" value="${message(code: 'headline.publish.testMail.button', default: 'Send Test-Mail')}" /></span>
+					<span class="button"><g:link class="edit" controller="headline" action="show" id="${headlineInstance?.id}"><g:message code="default.cancel.button" default="Cancel" /></g:link></span>
                 </div>
             </g:form>
         </div>

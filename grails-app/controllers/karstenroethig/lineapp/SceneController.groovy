@@ -25,17 +25,6 @@ class SceneController {
         }
     }
 
-    def show = {
-        def sceneInstance = Scene.get(params.id)
-        if (!sceneInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'scene.label', default: 'Scene'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            [sceneInstance: sceneInstance]
-        }
-    }
-
     def edit = {
         def sceneInstance = Scene.get(params.id)
         if (!sceneInstance) {

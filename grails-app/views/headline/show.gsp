@@ -9,9 +9,11 @@
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+			<span class="menuButton"><g:link class="list" action="list"><g:message code="headline.list.label" /></g:link></span>
             <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+			<g:if test="${session?.user?.admin}">
+				<span class="menuButton"><g:link class="edit" controller="user" action="list"><g:message code="admin.label" /></g:link></span>
+			</g:if>
         </div>
         <div class="body">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
@@ -64,7 +66,7 @@
                                 <ul>
                                 <g:each in="${headlineInstance?.scenes?.sort{it.id}}" var="s">
                                     <li style="padding-bottom: 1em;">
-                                    	${s?.encodeAsHTML()} (<g:link controller="scene" action="show" id="${s.id}"><g:message code="default.edit.label.single" default="edit" /></g:link>)
+                                    	${s?.encodeAsHTML()} (<g:link controller="scene" action="edit" id="${s.id}"><g:message code="default.edit.label.single" default="edit" /></g:link>)
                                     </li>
                                 </g:each>
                                 </ul>
