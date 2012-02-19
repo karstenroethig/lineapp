@@ -27,15 +27,15 @@ class HeadlineController {
         def headlineInstance = new Headline(params)
 		
 		synchronized( this ) {
-			PropertyNumber prop = PropertyNumber.findByKey( 'headline.key.next' )
-			headlineInstance.key = prop.value
+			PropertyNumber prop = PropertyNumber.findByPropertyKey( 'headline.offerNumber.next' )
+			headlineInstance.offerNumber = prop.value
 			prop.value = prop.value + 1
 			prop.save()
 		}
 		headlineInstance.author = session.user
 		
         if (headlineInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.offerNumber])}"
             redirect(action: "show", id: headlineInstance.id)
         }
         else {
@@ -115,22 +115,22 @@ class HeadlineController {
     }
 	
 	def search = {
-		if( !params.key?.trim()) {
+		if( !params.offerNumber?.trim()) {
 			redirect(action: "list")
 		} else {
 			try{
-				def searchKey = new Long( params.key.trim() )
-				Headline headlineInstance = Headline.findByKey( searchKey )
+				def searchOfferNumber = new Long( params.offerNumber.trim() )
+				Headline headlineInstance = Headline.findByOfferNumber( searchOfferNumber )
 				
 				if( headlineInstance ) {
 					render( view: "show", model: [headlineInstance: headlineInstance] )
                     return
 				} else {
-					flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.key])}"
+					flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.offerNumber])}"
 					redirect(action: "list")
 				}
 			}catch( Exception ex ) {
-				flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.key])}"
+				flash.message = "${message(code: 'headline.search.not.found.message', args: [message(code: 'headline.label', default: 'Headline'), params.offerNumber])}"
 				redirect(action: "list")
 			}
 		}
@@ -187,14 +187,14 @@ class HeadlineController {
 			}
 			
 			if( errorResult ) {
-				flash.message = "${message(code: 'headline.publish.error', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key, errorResult])}"
+				flash.message = "${message(code: 'headline.publish.error', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.offerNumber, errorResult])}"
 			}
 			else {
 				headlineInstance.status = HeadlineStatus.PUBLISHED
 				headlineInstance.updateAuthor = session.user
 				
 				if (!headlineInstance.hasErrors() && headlineInstance.save(flush: true)) {
-					flash.message = "${message(code: 'headline.publish.success', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.key])}"
+					flash.message = "${message(code: 'headline.publish.success', args: [message(code: 'headline.label', default: 'Headline'), headlineInstance.offerNumber])}"
 					redirect(action: "show", id: headlineInstance.id)
 				}
 			}

@@ -3,6 +3,6 @@
 		id="headlineSearchForm"
 		name="headlineSearchForm"
 		method="get">
-		<g:textField name="key" value="${params.key}"/>
+		<g:textField name="offerNumber" value="${params.offerNumber}"/>
 	</g:form>
 </div>

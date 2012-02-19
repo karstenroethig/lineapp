@@ -14,7 +14,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:hsqldb:mem:devDB"
+			url = "jdbc:hsqldb:mem:devDB"
         }
     }
     test {
@@ -25,8 +25,12 @@ environments {
     }
     production {
         dataSource {
+			driverClassName = "com.mysql.jdbc.Driver"
             dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+            // url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			url="jdbc:mysql://localhost:3306/lineapp?autoreconnect=true"
+			username = "root"
+			password = "geheim"
         }
     }
 }

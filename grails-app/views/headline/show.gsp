@@ -83,9 +83,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="headline.key.label" default="Key" /></td>
+                            <td valign="top" class="name"><g:message code="headline.offerNumber.label" default="Offer Number" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: headlineInstance, field: "key")}</td>
+                            <td valign="top" class="value">${fieldValue(bean: headlineInstance, field: "offerNumber")}</td>
                             
                         </tr>
                     

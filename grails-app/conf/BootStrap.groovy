@@ -9,8 +9,8 @@ class BootStrap {
 		
 			case "development":
 				
-				if( !PropertyNumber.findByKey( 'headline.key.next' ) ) {
-					PropertyNumber prop = new PropertyNumber( key: 'headline.key.next', value: 20241L )
+				if( !PropertyNumber.findByPropertyKey( 'headline.offerNumber.next' ) ) {
+					PropertyNumber prop = new PropertyNumber( propertyKey: 'headline.offerNumber.next', value: 20241L )
 					
 					if( !prop.save() ) {
 						log.error "SAVING OF PROPERTYNUMBER FAILED:\n ${prop.errors}"
@@ -62,8 +62,8 @@ class BootStrap {
 				headline.author = user
 				
 				synchronized( this ) {
-					PropertyNumber prop = PropertyNumber.findByKey( 'headline.key.next' )
-					headline.key = prop.value
+					PropertyNumber prop = PropertyNumber.findByPropertyKey( 'headline.offerNumber.next' )
+					headline.offerNumber = prop.value
 					prop.value = prop.value + 1
 					prop.save()
 				}
@@ -148,7 +148,63 @@ class BootStrap {
 			
 				break
 			
-			case "production": break
+			case "production":
+				
+				// is data in DB already available?
+				if( User.findByUsername( 'admin' ) ) {
+					log.info 'Database is initialized already!'
+					return
+				}
+				
+				// create first user (in admin-role)
+				User admin = new User( username: 'admin',
+					passwordHash: 'geheim'.encodeAsSHA(),
+					fullname: 'Ad Ministrator',
+					email: 'name@company.com',
+					role: 'admin',
+					status: UserStatus.ACTIVE )
+				
+				if( !admin.save() ) {
+					log.error "SAVING OF ADMIN FAILED:\n ${admin.errors}"
+					return
+				}
+				
+				if( !PropertyNumber.findByPropertyKey( 'headline.offerNumber.next' ) ) {
+					PropertyNumber prop = new PropertyNumber( propertyKey: 'headline.offerNumber.next', value: 20241L )
+					
+					if( !prop.save() ) {
+						log.error "SAVING OF PROPERTYNUMBER FAILED:\n ${prop.errors}"
+						return
+					}
+				}
+				
+				if( !MailProperty.find( 'from MailProperty as mp where 1 = 1' ) ) {
+					MailProperty prop = new MailProperty()
+					
+					prop.hostName = 'mail'
+					prop.port = 25
+					prop.tls = true
+					prop.username = 'username'
+					prop.password = 'password'
+					prop.fromAddress = 'me@home.de'
+					prop.fromName = 'Me'
+					prop.subject = 'Test subject'
+					prop.htmlMsg = '<html><body></body></html>'
+					prop.textMsg = 'Text'
+					prop.htmlSignature = 'MfG'
+					prop.textSignature = 'MfG'
+					prop.backupAddresses = 'name@company.com'
+					prop.testAddresses = 'name@company.com'
+					
+					if( !prop.save() ) {
+						log.error "SAVING OF MAILPROPERTY FAILED:\n ${prop.errors}"
+						return
+					}
+				}
+				
+				log.info "Lineapp Domain Objects created!"
+				
+				break
 		}
 
 	}

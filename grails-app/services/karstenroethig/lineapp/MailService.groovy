@@ -71,7 +71,7 @@ class MailService {
 			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.subject}", headlineInstance.subject );
 			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.subHeadline}", headlineInstance.subHeadline );
 			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.body}", StringUtils.replace( headlineInstance.body, "\n", "<br/>" ) );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.key}", headlineInstance.key.toString() );
+			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.offerNumber}", headlineInstance.offerNumber.toString() );
 			htmlMsg = StringUtils.replace( htmlMsg, "#{mail.htmlSignature}", htmlSignature );
 			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.scenes}", StringUtils.replace( scenesStr, "\n", "<br/>" ) );
 			
@@ -80,7 +80,7 @@ class MailService {
 			textMsg = StringUtils.replace( textMsg, "#{headline.subject}", headlineInstance.subject );
 			textMsg = StringUtils.replace( textMsg, "#{headline.subject}", headlineInstance.subHeadline );
 			textMsg = StringUtils.replace( textMsg, "#{headline.body}", headlineInstance.body );
-			textMsg = StringUtils.replace( textMsg, "#{headline.key}", headlineInstance.key.toString() );
+			textMsg = StringUtils.replace( textMsg, "#{headline.offerNumber}", headlineInstance.offerNumber.toString() );
 			textMsg = StringUtils.replace( textMsg, "#{mail.textSignature}", textSignature );
 			textMsg = StringUtils.replace( textMsg, "#{headline.scenes}", scenesStr );
 			

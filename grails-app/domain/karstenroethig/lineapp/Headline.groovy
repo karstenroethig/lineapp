@@ -10,7 +10,7 @@ class Headline {
 	Date recordingDate
 	String comment
 	HeadlineStatus status = HeadlineStatus.UNPUBLISHED
-	Long key
+	Long offerNumber
 	Date dateCreated
 	Date lastUpdated
 	
@@ -30,7 +30,7 @@ class Headline {
 		recordingDate( blank: false, nullable: false )
 		comment( maxSize: 10000 )
 		status( nullable: false )
-		key( blank: false, nullable: false, unique: true, min: 1L )
+		offerNumber( blank: false, nullable: false, unique: true, min: 1L )
 		author( nullable: false )
 		dateCreated()
 		updateAuthor( nullable: true )
