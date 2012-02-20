@@ -28,9 +28,9 @@ environments {
 			driverClassName = "com.mysql.jdbc.Driver"
             dbCreate = "update"
             // url = "jdbc:hsqldb:file:prodDb;shutdown=true"
-			url="jdbc:mysql://localhost:3306/lineapp?autoreconnect=true"
-			username = "root"
-			password = "geheim"
+			url="jdbc:mysql://localhost:3306/lineapp?useUnicode=yes&characterEncoding=UTF-8"
+			username = "username"
+			password = "password"
         }
     }
 }

@@ -1,5 +1,6 @@
 ## 1.0.0 (dd.MM.YYYY)
 
+* Added MySQL JDBC driver
 * Sending e-mail notification when headlines are distributed
 * Improved menu structure
 * New home page: list of headlines
