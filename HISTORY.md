@@ -1,5 +1,6 @@
 ## 1.0.0 (dd.MM.YYYY)
 
+* Upgrade to grails 1.3.8
 * Added MySQL JDBC driver
 * Sending e-mail notification when headlines are distributed
 * Improved menu structure
