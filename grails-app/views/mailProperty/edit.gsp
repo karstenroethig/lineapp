@@ -82,7 +82,7 @@
                                   <label for="password"><g:message code="mailProperty.password.label" default="Password" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: mailPropertyInstance, field: 'password', 'errors')}">
-                                    <g:textField name="password" value="${mailPropertyInstance?.password}" />
+                                    <g:passwordField name="password" value="${mailPropertyInstance?.password}" />
 									<br/>
 									<g:message code="mailProperty.password.description" default="n. A." />
                                 </td>

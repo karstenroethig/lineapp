@@ -53,13 +53,6 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="mailProperty.password.label" default="Password" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: mailPropertyInstance, field: "password")}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="mailProperty.fromAddress.label" default="From Address" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: mailPropertyInstance, field: "fromAddress")}</td>
