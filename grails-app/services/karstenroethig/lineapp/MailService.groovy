@@ -60,20 +60,20 @@ class MailService {
 				scenesStr += "\n"
 			}
 			
-			subject = StringUtils.replace( subject, "#{headline.subject}", headlineInstance.subject );
+			subject = StringUtils.replace( subject, "#{headline.subject}", StringUtils.replace( headlineInstance.subject, "\n", " " ) );
 			
 			if( test ) {
 				subject = "[TEST] " + subject;
 			}
 			
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.location}", headlineInstance.location );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.federalLand}", headlineInstance.federalLand.toString() );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.subject}", headlineInstance.subject );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.subHeadline}", headlineInstance.subHeadline );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.body}", StringUtils.replace( headlineInstance.body, "\n", "<br/>" ) );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.offerNumber}", headlineInstance.offerNumber.toString() );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.location}", headlineInstance.location );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.federalLand}", headlineInstance.federalLand.toString() );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.subject}", headlineInstance.subject );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.subHeadline}", headlineInstance.subHeadline );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.body}", headlineInstance.body );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.offerNumber}", headlineInstance.offerNumber.toString() );
+			htmlMsg = replaceForHtml( htmlMsg, "#{headline.scenes}", scenesStr );
 			htmlMsg = StringUtils.replace( htmlMsg, "#{mail.htmlSignature}", htmlSignature );
-			htmlMsg = StringUtils.replace( htmlMsg, "#{headline.scenes}", StringUtils.replace( scenesStr, "\n", "<br/>" ) );
 			
 			textMsg = StringUtils.replace( textMsg, "#{headline.location}", headlineInstance.location );
 			textMsg = StringUtils.replace( textMsg, "#{headline.federalLand}", headlineInstance.federalLand.toString() );
@@ -107,5 +107,17 @@ class MailService {
 		}
 		
 		return null;
+	}
+	
+	private String replaceForHtml( String text, String searchString, String replacement ) {
+		
+		if( replacement == null ) {
+			replacement = StringUtils.EMPTY;
+		}
+		
+		replacement = replacement.encodeAsHTML();
+		replacement = StringUtils.replace( replacement, "\n", "<br/>" )
+		
+		return StringUtils.replace( text, searchString, replacement );
 	}
 }
