@@ -54,7 +54,7 @@ class MailService {
 			
 			String scenesStr = StringUtils.EMPTY;
 			
-			for( Scene scene : headlineInstance.scenes ) {
+			for( Scene scene : headlineInstance?.scenes?.sort{it.id} ) {
 				scenesStr += "\n"
 				scenesStr += StringUtils.trim( scene.body );
 				scenesStr += "\n"
