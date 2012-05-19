@@ -76,6 +76,22 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name"><g:message code="headline.attachments.label" default="Attachments" /></td>
+                            
+                            <td valign="top" style="text-align: left;" class="value">
+                                <ul>
+                                <g:each in="${headlineInstance?.attachments?.sort{it.filename}}" var="a">
+                                    <li style="padding-bottom: 1em;">
+                                    	<g:link controller="attachment" action="show" id="${a.id}">${a?.filename.encodeAsHTML()}</g:link> (${a.formattedFilesize}) <g:formatDate format="dd.MM.yyyy HH:mm" date="${a?.dateCreated}"/> - <g:link controller="user" action="show" id="${a?.author?.id}">${a?.author?.fullname?.encodeAsHTML()}</g:link> (<g:link controller="attachment" action="show" id="${a.id}" params="[download: true]"><g:message code="default.download.label.single" default="download" /></g:link> | <g:link controller="attachment" action="delete" id="${a.id}"><g:message code="default.delete.label.single" default="delete" /></g:link>)
+                                    </li>
+                                </g:each>
+                                </ul>
+								<g:link controller="attachment" action="create" params="['headline.id': headlineInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'attachment.label', default: 'Attachment')])}</g:link>
+                            </td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="headline.status.label" default="Status" /></td>
                             
                             <td valign="top" class="value">${headlineInstance?.status?.encodeAsHTML()}</td>

@@ -41,7 +41,7 @@ class UserRoleFilters {
 			}
 		}
 	
-		filterHeadline( controller: "(headline|scene)", action: '*' ) {
+		filterHeadline( controller: "(headline|scene|attachment)", action: '*' ) {
 			before = {
 				if( !session.user ) {
 					redirect( controller: 'user', action: 'login' )

@@ -1,17 +1,19 @@
 package karstenroethig.lineapp
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
 
 class MailService {
 
     static transactional = false
 
-    String sendMail( Headline headlineInstance, MailingList[] mailingLists, Boolean test ) {
+    String sendMail( Headline headlineInstance, MailingList[] mailingLists, String attachmentDirectory, Boolean test ) {
 		
 		try {
 			MailProperty mailProperty = MailProperty.find( 'from MailProperty as mp where 1 = 1' )
@@ -98,6 +100,27 @@ class MailService {
 			email.setSubject( subject );
 			email.setHtmlMsg( htmlMsg );
 			email.setTextMsg( textMsg );
+			
+			if( headlineInstance.attachments?.size() > 0 ) {
+				
+				for( Attachment attachmentInstance : headlineInstance.attachments ) {
+					String path = attachmentDirectory + "headline_" + attachmentInstance.headline.id
+					String filename = attachmentInstance.id + "_" + attachmentInstance.filename
+					File file = new File( path, filename )
+					
+					if( file.exists() ) {
+						
+						EmailAttachment attachment = new EmailAttachment();
+						
+						attachment.setPath( file.getPath() );
+						attachment.setDisposition( EmailAttachment.ATTACHMENT );
+						attachment.setName( attachmentInstance.filename );
+						
+						email.attach( attachment );
+					}
+				}
+				
+			}
 			
 			email.send();
 		}catch( Exception ex ) {

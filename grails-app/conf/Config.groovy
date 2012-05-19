@@ -88,3 +88,6 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+lineapp.attachments.directory = "E:/develop/grails/lineapp/target/attachments/"
+// lineapp.attachments.directory = "D:/lineapp/attachments/"

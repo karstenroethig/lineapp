@@ -155,7 +155,8 @@ class HeadlineController {
         }
         else {
 			
-			String errorResult = mailService.sendMail( headlineInstance, null, true )
+        	String attachmentDirectory = grailsApplication.config.lineapp.attachments.directory
+			String errorResult = mailService.sendMail( headlineInstance, null, attachmentDirectory, true )
 			
 			if( errorResult ) {
 				flash.message = "${message(code: 'headline.publish.testMail.error', args: [errorResult])}"
@@ -180,10 +181,9 @@ class HeadlineController {
 			
 			if( params.mailingLists ) {
 				MailingList[] mailingLists = MailingList.findAll( "from MailingList as ml where ml.name in (:names)", [names: params.mailingLists ] )
+				String attachmentDirectory = grailsApplication.config.lineapp.attachments.directory
 				
-				println mailingLists
-				
-				errorResult = mailService.sendMail( headlineInstance, mailingLists, false )
+				errorResult = mailService.sendMail( headlineInstance, mailingLists, attachmentDirectory, false )
 			}
 			
 			if( errorResult ) {

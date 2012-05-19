@@ -18,7 +18,8 @@ class Headline {
 	User updateAuthor
 	
 	static hasMany = [
-		scenes: Scene
+		scenes: Scene,
+		attachments: Attachment
 	]
 	
 	static constraints = {

@@ -94,6 +94,31 @@ class BootStrap {
 					return
 				}
 				
+				// create attachments for the headline above
+				Attachment attachment = new Attachment()
+				attachment.mimetype = 'application/jpeg'
+				attachment.filename = 'Testbild1.jpg'
+				attachment.filesize = 123456L
+				attachment.author = user
+				attachment.headline = headline
+				
+				if( !attachment.save() ) {
+					log.error "SAVING OF ATTACHMENT FAILED:\n ${attachment.errors}"
+					return
+				}
+				
+				attachment = new Attachment()
+				attachment.mimetype = 'application/jpeg'
+				attachment.filename = 'Testbildßöü.jpg'
+				attachment.filesize = 123456342L
+				attachment.author = user
+				attachment.headline = headline
+				
+				if( !attachment.save() ) {
+					log.error "SAVING OF ATTACHMENT FAILED:\n ${attachment.errors}"
+					return
+				}
+				
 				// create some contacts
 				def contact1 = new Contact( name: 'Kontakt 1', email: 'name@company.com' )
 				contact1.save()
