@@ -1,4 +1,10 @@
-## 1.0.0 (dd.MM.YYYY)
+## 1.1.0 (21.05.2012)
+
+* identical sequence of scenes in view and e-mails ([#4](https://github.com/karstenroethig/lineapp/issues/4))
+* add the ability to attach files in headlines ([#3](https://github.com/karstenroethig/lineapp/issues/3))
+* umlauts are not displayed in e-mails ([#1](https://github.com/karstenroethig/lineapp/issues/1))
+
+## 1.0.0 (25.04.2012)
 
 * Upgrade to grails 1.3.8
 * Added MySQL JDBC driver

@@ -7,8 +7,8 @@ A Grails application to manage and distribute informations about filmed headline
 Requirements
 ------------
 * Java SDK 1.5+ (for Grails 1.2 or greater)
-* Grails 1.3.8 (http://grails.org)
-* Maven 2.x or 3.x (http://maven.apache.org)
+* Grails 1.3.8 ([http://grails.org](http://grails.org))
+* Maven 2.x or 3.x ([http://maven.apache.org](http://maven.apache.org))
 
 
 Run
