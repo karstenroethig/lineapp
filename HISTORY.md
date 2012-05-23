@@ -1,8 +1,8 @@
 ## 1.1.0 (21.05.2012)
 
-* identical sequence of scenes in view and e-mails ([#4](https://github.com/karstenroethig/lineapp/issues/4))
-* add the ability to attach files in headlines ([#3](https://github.com/karstenroethig/lineapp/issues/3))
-* umlauts are not displayed in e-mails ([#1](https://github.com/karstenroethig/lineapp/issues/1))
+* Identical sequence of scenes in view and e-mails ([#4](https://github.com/karstenroethig/lineapp/issues/4))
+* Add the ability to attach files in headlines ([#3](https://github.com/karstenroethig/lineapp/issues/3))
+* Fixed: umlauts are not displayed in e-mails ([#1](https://github.com/karstenroethig/lineapp/issues/1))
 
 ## 1.0.0 (25.04.2012)
 
