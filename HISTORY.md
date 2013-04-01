@@ -1,3 +1,7 @@
+## 1.2.0 ()
+
+* Add the ability to search for headlines ([#6](https://github.com/karstenroethig/lineapp/issues/6))
+
 ## 1.1.0 (21.05.2012)
 
 * Identical sequence of scenes in view and e-mails ([#4](https://github.com/karstenroethig/lineapp/issues/4))

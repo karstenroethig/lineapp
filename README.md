@@ -16,7 +16,7 @@ Run
 
 1. Create a `GRAILS_HOME` environment variable that points to the path of the Grails distribution and add the `bin` folder in the Grails distribution to the `PATH` environment variable
 
-    `set GRAILS_HOME=C:\temp\Grails\grails-1.3.7`
+    `set GRAILS_HOME=C:\temp\Grails\grails-1.3.8`
 	
     `set PATH=%PATH%;%GRAILS_HOME%\bin`
 
