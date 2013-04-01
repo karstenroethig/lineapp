@@ -20,6 +20,78 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+
+			<g:form method="post">
+				<div class="dialog">
+					<table>
+						<tbody>
+							<tr class="prop">
+								<td valign="top" class="name"><g:message code="headline.search.param.textsearch.label" default="Textsearch" /></td>
+								
+								<td valign="top" class="value">
+									<table style="padding: 0; border: 0; width: auto;">
+										<tr>
+											<td style="padding: 0;">
+												<g:message code="headline.search.param.textsearch.query.label" default="Suchtext:" />
+											</td>
+											<td colspan="3" style="padding: 0;">
+												<input id="search_param_text" type="text" value="${search_param_text}" name="search_param_text" style="width: 100%;" />
+											</td>
+										</tr>
+										<tr>
+											<td style="padding: 0 2px;">
+												<g:message code="headline.search.param.textsearch.searchfields.label" default="Searchfields:" />
+											</td>
+											<td style="padding: 0 2px;">
+												<g:checkBox name="search_param_text_opt_headline" value="${search_param_text_opt_headline}" /> <g:message code="headline.search.param.textsearch.searchfields.headline.label" default="Headline" />
+											</td>
+											<td style="padding: 0 2px;">
+												<g:checkBox name="search_param_text_opt_subHeadline" value="${search_param_text_opt_subHeadline}" /> <g:message code="headline.search.param.textsearch.searchfields.subHeadline.label" default="Sub-Headline" />
+											</td>
+											<td style="padding: 0 2px;">
+												<g:checkBox name="search_param_text_opt_body" value="${search_param_text_opt_body}" /> <g:message code="headline.search.param.textsearch.searchfields.body.label" default="Body" />
+											</td>
+										</tr>
+										<tr>
+											<td style="padding: 0 2px;">
+												&nbsp;
+											</td>
+											<td style="padding: 0 2px;">
+												<g:checkBox name="search_param_text_opt_comment" value="${search_param_text_opt_comment}" /> <g:message code="headline.search.param.textsearch.searchfields.comment.label" default="Comment" />
+											</td>
+											<td style="padding: 0 2px;">
+												<g:checkBox name="search_param_text_opt_scenes" value="${search_param_text_opt_scenes}" /> <g:message code="headline.search.param.textsearch.searchfields.scenes.label" default="Bilder und Töne" />
+											</td>
+											<td style="padding: 0 2px;">
+												&nbsp;
+											</td>
+										</tr>
+									</table>
+								</td>
+								
+							</tr>
+							<tr class="prop">
+								<td valign="top" class="name"><g:message code="headline.search.param.status.label" default="Status" /></td>
+								
+								<td valign="top" class="value">
+									<g:select
+										name="search_param_status"
+										noSelection="${['':'Alle']}"
+										from="${karstenroethig.lineapp.HeadlineStatus?.values()}"
+										keys="${karstenroethig.lineapp.HeadlineStatus?.values()*.name()}"
+										value="${search_param_status}" />
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="buttons" style="margin-bottom: 15px;">
+					<span class="button"><g:actionSubmit class="search" action="search" value="${message(code: 'default.button.search.label', default: 'Search')}" /></span>
+					<span class="button"><g:actionSubmit class="resetSearch" action="resetSearch" value="${message(code: 'default.button.resetSearch.label', default: 'Reset')}" /></span>
+				</div>
+			</g:form>
+
             <div class="list">
                 <table>
                     <thead>
