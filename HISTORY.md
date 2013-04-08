@@ -1,4 +1,4 @@
-## 1.2.0 ()
+## 1.2.0 (08.04.2013)
 
 * Add the ability to search for headlines ([#6](https://github.com/karstenroethig/lineapp/issues/6))
 
