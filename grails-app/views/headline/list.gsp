@@ -63,7 +63,7 @@
 												<g:checkBox name="search_param_text_opt_scenes" value="${search_param_text_opt_scenes}" /> <g:message code="headline.search.param.textsearch.searchfields.scenes.label" default="Bilder und Töne" />
 											</td>
 											<td style="padding: 0 2px;">
-												&nbsp;
+												<g:checkBox name="search_param_text_opt_location" value="${search_param_text_opt_location}" /> <g:message code="headline.search.param.textsearch.searchfields.location.label" default="Location" />
 											</td>
 										</tr>
 									</table>

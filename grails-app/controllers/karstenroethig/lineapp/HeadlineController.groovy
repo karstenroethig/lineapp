@@ -151,6 +151,7 @@ class HeadlineController {
 		def search_param_text_opt_body = params.search_param_text_opt_body
 		def search_param_text_opt_comment = params.search_param_text_opt_comment
 		def search_param_text_opt_scenes = params.search_param_text_opt_scenes
+		def search_param_text_opt_location = params.search_param_text_opt_location
 		def search_param_status_str = params.search_param_status
 		def search_param_status = null
 		
@@ -204,6 +205,10 @@ class HeadlineController {
 								ilike( "body", "%" + search_param_text + "%" )
 							}
 						}
+					
+						if( search_param_text_opt_location ) {
+							ilike( "location", "%" + search_param_text + "%" )
+						}
 					}
 				}
 				
@@ -225,6 +230,7 @@ class HeadlineController {
 				search_param_text_opt_body: search_param_text_opt_body,
 				search_param_text_opt_comment: search_param_text_opt_comment,
 				search_param_text_opt_scenes: search_param_text_opt_scenes,
+				search_param_text_opt_location: search_param_text_opt_location,
 				search_param_status: search_param_status_str
 			] )
 			
@@ -240,6 +246,7 @@ class HeadlineController {
 			search_param_text_opt_body: search_param_text_opt_body,
 			search_param_text_opt_comment: search_param_text_opt_comment,
 			search_param_text_opt_scenes: search_param_text_opt_scenes,
+			search_param_text_opt_location: search_param_text_opt_location,
 			search_param_status: search_param_status_str
 		] )
 	}
